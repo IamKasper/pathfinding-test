@@ -112,8 +112,7 @@ class PathfindingGrid {
     getNeighbors(row, col) {
         const neighbors = [];
         const directions = [
-            [-1, 0], [1, 0], [0, -1], [0, 1],      // up, down, left, right
-            [-1, -1], [-1, 1], [1, -1], [1, 1]     // diagonals: up-left, up-right, down-left, down-right
+            [-1, 0], [1, 0], [0, -1], [0, 1]  // up, down, left, right
         ];
 
         for (const [dr, dc] of directions) {
@@ -123,11 +122,7 @@ class PathfindingGrid {
             if (newRow >= 0 && newRow < this.rows &&
                 newCol >= 0 && newCol < this.cols &&
                 !this.isWall(newRow, newCol)) {
-
-                const isDiagonal = dr !== 0 && dc !== 0;
-                const cost = isDiagonal ? Math.sqrt(2) : 1;
-
-                neighbors.push({ row: newRow, col: newCol, cost });
+                neighbors.push({ row: newRow, col: newCol });
             }
         }
 
@@ -135,10 +130,8 @@ class PathfindingGrid {
     }
 
     heuristic(pos1, pos2) {
-        // Octile distance (diagonal distance) for 8-directional movement
-        const dx = Math.abs(pos1.row - pos2.row);
-        const dy = Math.abs(pos1.col - pos2.col);
-        return Math.max(dx, dy) + (Math.sqrt(2) - 1) * Math.min(dx, dy);
+        // Manhattan distance
+        return Math.abs(pos1.row - pos2.row) + Math.abs(pos1.col - pos2.col);
     }
 
     findPath() {
@@ -188,7 +181,7 @@ class PathfindingGrid {
 
             for (const neighbor of neighbors) {
                 const neighborKey = key(neighbor);
-                const tentativeGScore = gScore.get(key(current)) + neighbor.cost;
+                const tentativeGScore = gScore.get(key(current)) + 1;
 
                 if (!gScore.has(neighborKey) || tentativeGScore < gScore.get(neighborKey)) {
                     cameFrom.set(neighborKey, current);
@@ -231,5 +224,4 @@ class PathfindingGrid {
 
 // Initialize the grid when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    const grid = new PathfindingGrid(20, 20);
-});
+20});
