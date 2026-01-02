@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A* Pathfinding Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>A* Pathfinding Visualization</h1>
+        <div class="instructions">
+            <p><strong>Instructions:</strong></p>
+            <ul>
+                <li>Drag the <span class="start-color">START</span> point to move it</li>
+                <li>Drag the <span class="end-color">END</span> point to move it</li>
+                <li>Click on tiles to create/remove walls</li>
+                <li>Path updates automatically!</li>
+            </ul>
+        </div>
+        <div id="grid-container"></div>
+        <button id="clearBtn">Clear Walls</button>
+    </div>
+    <script src="pathfinding.js"></script>
+</body>
+</html>
