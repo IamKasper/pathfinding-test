@@ -130,7 +130,7 @@ h1 {
 }
 
 .tile.visited {
-    background: #FFE082;
+    background: white;
 }
 
 @keyframes pathAppear {
