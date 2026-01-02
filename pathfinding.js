@@ -224,4 +224,5 @@ class PathfindingGrid {
 
 // Initialize the grid when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-20});
+    const grid = new PathfindingGrid(20, 20);
+});
